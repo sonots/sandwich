@@ -1,5 +1,6 @@
 require 'sandwich/cookbook_version'
 require 'chef'
+require 'chef/application'
 require 'uuidtools'
 
 module Sandwich
