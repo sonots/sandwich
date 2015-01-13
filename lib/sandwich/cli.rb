@@ -49,6 +49,12 @@ module Sandwich
                 'Load attributes from a JSON file or URL') do |c|
           @options[:json_attribs] = c
         end
+
+        opts.on('-W',
+                '--why-run',
+                'Enable whyrun mode') do
+          @options[:why_run] = true
+        end
       end
     end
 
@@ -79,6 +85,10 @@ module Sandwich
       if @options[:json_attribs]
         config_fetcher = Chef::ConfigFetcher.new(@options[:json_attribs])
         json_attribs = config_fetcher.fetch_json
+      end
+
+      if @options[:why_run]
+        Chef::Config[:why_run] = true
       end
 
       # pass remaining arguments on to script
